@@ -1,18 +1,14 @@
 pipeline {   
     agent any
     stages {
-        stage("init") {
-            steps {
-                echo "initializing the script"
-            }
-        }
-        stage("build jar") {
+
+        stage("build") {
             steps {
                 echo "building the jar file"
             }
         }
 
-        stage("build image") {
+        stage("test") {
             steps {
             echo "building the image"
             }
@@ -26,4 +22,5 @@ pipeline {
             }
         }               
     }
+
 } 
