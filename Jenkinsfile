@@ -1,50 +1,43 @@
-def gv
+
 
 pipeline {   
     agent any
 
+    tools {
+        maven 'maven-3.9'
+    }
+
     stages {
-        
-        stage("init") {
+        stage("build jar") {
             steps {
                 script {
-                    gv = load "script.groovy"
-
-                }
-                
-            }
-        }
-
-        stage("build") {
-            steps {
-                script {
-                    gv.buildApp()
+                    echo "building the application..."
+                    sh 'mvn package'
                 }
             }
         }
 
-        stage("test") {
-     
+        stage("build image") {
             steps {
                 script {
-                    gv.testApp()
+                    echo "building the docker image..."
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                        sh 'docker build -t samsonojo/demo-app:jmal-2.0 .'
+                        sh 'echo $PASS | docker login -u $USER --password-stdin'
+                        sh 'socker push samsonojo/demo-app:jmal-2.0'
+                    }
                 }
-            
             }
         }
 
         stage("deploy") {
-        
+     
             steps {
-
                 script {
-                    env.ENV = input message "Select the environment to deploy", ok "Done", parameters: [choice(name: "ONE", choices: ["Dev", "Staging", "Prod"], description: "")]
-                    gv.deployApp()
-                    echo "deploying to ${ENV}"
-                    
+                    echo "deploying the application..."
                 }
+            
             }
-
-            }
-        }               
-    }
+        }
+    }               
+}
