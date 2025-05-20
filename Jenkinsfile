@@ -22,6 +22,8 @@ pipeline {
             }
             steps {
                 script {
+
+                    echo "Buiding the application...."
     
                 }
             }
@@ -35,7 +37,9 @@ pipeline {
             }     
             steps {
                 script {
+                    echo "Deploying the application...."
       
+
                 }
             
             }
