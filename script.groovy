@@ -11,7 +11,7 @@ def buildImage(){
         sh 'echo $PASS | docker login -u $USER --password-stdin'
         sh 'docker push samsonojo/demo-app:jmal-2.1'                    }
 }
-}
+
 
 def deployApp(){
     echo "deploying the application..."
