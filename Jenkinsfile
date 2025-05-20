@@ -40,6 +40,7 @@ pipeline {
                 parameters {
                     choice(name: "ENV", choices: ["Dev", "Staging", "Prod"], description: "")
             }
+            }
             steps {
 
                 script {
@@ -51,5 +52,3 @@ pipeline {
             }
         }               
     }
-
-} 
