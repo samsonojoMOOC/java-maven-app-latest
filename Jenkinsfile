@@ -24,7 +24,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh 'docker build -t samsonojo/demo-app:jmal-2.0 .'
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
-                        sh 'socker push samsonojo/demo-app:jmal-2.0'
+                        sh 'docker push samsonojo/demo-app:jmal-2.0'
                     }
                 }
             }
