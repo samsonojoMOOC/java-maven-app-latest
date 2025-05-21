@@ -32,7 +32,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage 'samsonojo/demo-app:jmal-3.0'
+                    buildImage 'samsonojo/demo-app:jmal-3.1'
 
                 }
             }
