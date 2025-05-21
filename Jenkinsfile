@@ -29,10 +29,12 @@ pipeline {
                  }
             }
 
-        stage("build image") {
+        stage("build and push image") {
             steps {
                 script {
-                    buildImage 'samsonojo/demo-app:jmal-3.1'
+                    buildImage 'samsonojo/demo-app:jmal-3.2'
+                    dockerLogin()
+                    dockerPush 'samsonojo/demo-app:jmal-3.2'
 
                 }
             }
