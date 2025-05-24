@@ -7,7 +7,7 @@ pipeline {
         stage("test") {
             steps {
                 script {
-                    echo "We are testing..."
+                    echo "We are testing FEATURE AUTH HAS CHANGES..."
                     echo "Branch currently building $BRANCH_NAME"
 
                 }
