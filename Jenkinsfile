@@ -7,7 +7,7 @@ pipeline {
         stage("test") {
             steps {
                 script {
-                    echo "We are testing the Samson now here we go webhook..."
+                    echo "We are testing the Samson now here we go after removing github ips webhook..."
                     echo "Branch currently building $BRANCH_NAME"
 
                 }
