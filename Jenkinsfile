@@ -7,7 +7,7 @@ pipeline {
         stage("test") {
             steps {
                 script {
-                    echo "We are testing..."
+                    echo "We are testing the webhook..."
                     echo "Branch currently building $BRANCH_NAME"
 
                 }
