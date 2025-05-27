@@ -44,10 +44,10 @@ pipeline {
             steps {
                 script {
                     echo "building the application image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', usernameVariable: "USER", passowrdVariable: "PASS")]){
-                        sh "docker build -t samsonojo/demo-app:$env.IMAGE_NAME ."
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', usernameVariable: "USER", passwordVariable: "PASS")]){
+                        sh "docker build -t samsonojo/demo-app:${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
-                        sh "docker push samsonojo/demo-app:$env.IMAGE_NAME"
+                        sh "docker push samsonojo/demo-app:${IMAGE_NAME}"
                     }
                 }
 
