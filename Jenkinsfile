@@ -18,7 +18,7 @@ pipeline {
                         versions:commit'
                         def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
                         def version = matcher[0][1]
-                        env.IMAGE_NAME = "$version--$BUILD_NUMBER"
+                        IMAGE_NAME = "$version--$BUILD_NUMBER"
 
                 }
             }
@@ -45,9 +45,9 @@ pipeline {
                 script {
                     echo "building the application image..."
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', usernameVariable: "USER", passowrdVariable: "PASS")]){
-                        sh "docker build -t samsonojo/demo-app:${env.IMAGE_NAME} ."
+                        sh "docker build -t samsonojo/demo-app:${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
-                        sh "docker push samsonojo/demo-app:${env.IMAGE_NAME}"
+                        sh "docker push samsonojo/demo-app:${IMAGE_NAME}"
                     }
                 }
 
